@@ -2,8 +2,8 @@ const fs = require('fs');
 
 class Contenedor {
     constructor(path) {
-        this.path = path;
-    };
+        this.path = './${path}.txt';
+    }
 
     //save(Object): Number - Recibe un objeto, 
     //lo guarda en el archivo, devuelve el id asignado.
@@ -13,7 +13,7 @@ class Contenedor {
         fs.promises.readFile(this.path, 'utf-8')
             .then(contents => {
 
-                if (contents = []) {
+                if (contents = '[]' || contents == '') {
                     element.id = 1
                     let array = []
                     array.push(element)
