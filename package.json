@@ -1,0 +1,23 @@
+{
+  "name": "desafio2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IvanPasciucco/desafio2CH.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IvanPasciucco/desafio2CH/issues"
+  },
+  "homepage": "https://github.com/IvanPasciucco/desafio2CH#readme",
+  "dependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

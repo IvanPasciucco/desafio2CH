@@ -17,7 +17,7 @@ productos.save({
     price: 345.67,                                                                                                                                     
     thumbnail: 'https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png'
 })
-///productos.getById(2)
+//productos.getById(2)
 //productos.getAll()
 //productos.deleteById(1)
-productos.deleteAll()
+//productos.deleteAll()

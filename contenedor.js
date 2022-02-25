@@ -2,12 +2,10 @@ const fs = require('fs');
 
 class Contenedor {
     constructor(path) {
-        this.path = './${path}.txt';
+        this.path = `./${path}.txt`;
     }
-
     //save(Object): Number - Recibe un objeto, 
     //lo guarda en el archivo, devuelve el id asignado.
-
     save(element) {
 
         fs.promises.readFile(this.path, 'utf-8')
@@ -19,34 +17,65 @@ class Contenedor {
                     array.push(element)
                     let arrayString = JSON.stringify(array, null, 2);
 
-                    fs.promises.writeFile(this.path, 'utf-8', array)
-                } else {
-
-                    let contentsObject = JSON.parse(contents)
-                    let size = contentsObject.length - 1
-                    let lastId = contentsObject[size].id
+                    fs.promises.writeFile(this.path, arrayString)
+                    .then(() => {
+                        console.log(`Se asigno el id: ${element.id} al producto` );
+                    })
+                    .catch((error) => {error()})
+                
+                    let contentsObject = JSON.parse(contents),
+                    size = contentsObject.length - 1,
+                    lastId = contentsObject[size].id
 
                     element.id = lastId + 1
                     contentsObject.push(element)
-                    contents = JSON.stringify[contentsObject, null, 2]
+                    contentsObject= JSON.stringify[contentsObject, null, 2]
 
                     fs.promises.writeFile(this.path, contentsObject)
                         .then(() => {
-                            console.log(`Se asigno el id ${item.id} al producto`);
+                            console.log(`Se asigno el id ${element.id} al producto`);
                         })
                         .catch((error) => {
                             console.log('Ocurrio un error al  asignar id', error);
 
                         })
 
+                } else{
+                    let contentsObj = JSON.parse(contents),
+                    size = contentsObject.length - 1,
+                    lastId = contentsObject[size].id
+
+                    element.id = lastId+1
+                    contentsObj.push(element)
+                    contentsObj= JSON.stringify(contentsObj,null,2)
+
+                    fs.promises.writeFile(this.path,contentsObj)
+                    .then(()=>{
+                        console.log(`Se asigno el id ${element.id} al producto`)
+                    })
+                    .catch(error =>
+                        console.log(error))
+
                 }
 
 
             })
-            .catch(err => {
-
-            })
-
+            .catch(error => {
+                element.id = 1; 
+                let array = [];
+                array.push(element);
+                let arrStr = JSON.stringify(array,null,2);
+                
+                fs.promises.writeFile(this.path,arrStr)
+                .then( () => {
+                    console.log('Guardado con exito') ;
+                    console.log(`El id asignado al producto es: ${element.id}`);
+                })
+                .catch( error => 
+                    console.log(`error${error}`)
+                    );
+            });
+            
 
     }
     /*getById(Number): Object - Recibe un id y devuelve el objeto con ese id, o null si no está.*/
